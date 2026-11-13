@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salin Token Mata Pelajaran</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        text-align: center;
+        color: white;
+        margin-bottom: 30px;
+        font-size: 22px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+      }
+
+      .card:hover {
+        transform: translateY(-2px);
+      }
+
+      .info {
+        flex: 1;
+      }
+
+      .token {
+        font-weight: bold;
+        color: #2563eb;
+        font-size: 16px;
+        margin-bottom: 4px;
+      }
+
+      .mapel {
+        color: #4b5563;
+        font-size: 14px;
+      }
+
+      .btn-salin {
+        background: #22c55e;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+        min-width: 90px;
+      }
+
+      .btn-salin:hover {
+        background: #16a34a;
+      }
+
+      .btn-salin.salinan {
+        background: #f59e0b;
+      }
+
+      .notifikasi {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #22c55e;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        opacity: 0;
+        transition: opacity 0.3s;
+        z-index: 1000;
+      }
+
+      .notifikasi.tampil {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="notifikasi" id="notif">✅ TOKEN BERHASIL DISALIN!</div>
+
+    <div class="container">
+      <h1>📋 Token Mata Pelajaran SMP</h1>
+
+      <!-- Baris 1 -->
+      <div class="card">
+        <div class="info">
+          <div class="token">PAI876</div>
+          <div class="mapel">Pendidikan Agama Islam</div>
+        </div>
+        <button class="btn-salin" onclick="salinToken('PAI876', this)">
+          SALIN
+        </button>
+      </div>
+
+      <!-- Baris 2 -->
+      <div class="card">
+        <div class="info">
+          <div class="token">PAK843</div>
+          <div class="mapel">Pendidikan Agama Kristen</div>
+        </div>
+        <button class="btn-salin" onclick="salinToken('PAK843', this)">
+          SALIN
+        </button>
+      </div>
+
+      <!-- Baris 3 -->
+      <div class="card">
+        <div class="info">
+          <div class="token">PAH348</div>
+          <div class="mapel">Pendidikan Agama Hindu</div>
+        </div>
+        <button class="btn-salin" onclick="salinToken('PAH348', this)">
+          SALIN
+        </button>
+      </div>
+
+      <!-- Baris 4 -->
+      <div class="card">
+        <div class="info">
+          <div class="token">MTK789</div>
+          <div class="mapel">Matematika</div>
+        </div>
+        <button class="btn-salin" onclick="salinToken('MTK789', this)">
+          SALIN
+        </button>
+      </div>
+
+      <!-- Baris 5 -->
+      <div class="card">
+        <div class="info">
+          <div class="token">BIN789</div>
+          <div class="mapel">Bahasa Indonesia</div>
+        </div>
+        <button class="btn-salin" onclick="salinToken('BIN789', this)">
+          SALIN
+        </button>
+      </div>
+
+      <!-- Baris 6 -->
+      <div class="card">
+        <div class="info">
+          <div class="token">IPA789</div>
+          <div class="mapel">Ilmu Pengetahuan Alam</div>
+        </div>
+        <button class="btn-salin" onclick="salinToken('IPA789', this)">
+          SALIN
+        </button>
+      </div>
+
+      <!-- Baris 7 -->
+      <div class="card">
+        <div class="info">
+          <div class="token">ING789</div>
+          <div class="mapel">Bahasa Inggris</div>
+        </div>
+        <button class="btn-salin" onclick="salinToken('ING789', this)">
+          SALIN
+        </button>
+      </div>
+
+      <!-- Baris 8 -->
+      <div class="card">
+        <div class="info">
+          <div class="token">IPS857</div>
+          <div class="mapel">Ilmu Pengetahuan Sosial</div>
+        </div>
+        <button class="btn-salin" onclick="salinToken('IPS857', this)">
+          SALIN
+        </button>
+      </div>
+
+      <!-- Baris 9 -->
+      <div class="card">
+        <div class="info">
+          <div class="token">PPA901</div>
+          <div class="mapel">Pendidikan Pancasila</div>
+        </div>
+        <button class="btn-salin" onclick="salinToken('PPA901', this)">
+          SALIN
+        </button>
+      </div>
+
+      <!-- Baris 10 -->
+      <div class="card">
+        <div class="info">
+          <div class="token">PJOK902</div>
+          <div class="mapel">Pendidikan Jasmani, Olahraga, dan Kesehatan</div>
+        </div>
+        <button class="btn-salin" onclick="salinToken('PJOK902', this)">
+          SALIN
+        </button>
+      </div>
+
+      <!-- Baris 11 -->
+      <div class="card">
+        <div class="info">
+          <div class="token">TIK903</div>
+          <div class="mapel">Teknologi Informasi dan Komunikasi</div>
+        </div>
+        <button class="btn-salin" onclick="salinToken('TIK903', this)">
+          SALIN
+        </button>
+      </div>
+
+      <!-- Baris 12 -->
+      <div class="card">
+        <div class="info">
+          <div class="token">PRK345</div>
+          <div class="mapel">Prakarya</div>
+        </div>
+        <button class="btn-salin" onclick="salinToken('PRK345', this)">
+          SALIN
+        </button>
+      </div>
+
+      <!-- Baris 13 -->
+      <div class="card">
+        <div class="info">
+          <div class="token">SNI959</div>
+          <div class="mapel">Seni Tari</div>
+        </div>
+        <button class="btn-salin" onclick="salinToken('SNI959', this)">
+          SALIN
+        </button>
+      </div>
+
+      <!-- Baris 14 -->
+      <div class="card">
+        <div class="info">
+          <div class="token">BK8477</div>
+          <div class="mapel">Bimbingan Konseling</div>
+        </div>
+        <button class="btn-salin" onclick="salinToken('BK8477', this)">
+          SALIN
+        </button>
+      </div>
+
+      <!-- Baris 15 -->
+      <div class="card">
+        <div class="info">
+          <div class="token">BDT485</div>
+          <div class="mapel">Bahasa Tolaki</div>
+        </div>
+        <button class="btn-salin" onclick="salinToken('BDT485', this)">
+          SALIN
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function salinToken(token, tombol) {
+        // Salin ke clipboard
+        navigator.clipboard.writeText(token).then(() => {
+          // Tampilkan notifikasi
+          const notif = document.getElementById("notif");
+          notif.classList.add("tampil");
+
+          // Ubah teks tombol sementara
+          tombol.textContent = "TERSALIN!";
+          tombol.classList.add("salinan");
+
+          setTimeout(() => {
+            notif.classList.remove("tampil");
+            tombol.textContent = "SALIN";
+            tombol.classList.remove("salinan");
+          }, 2000);
+        });
+      }
+    </script>
+  </body>
+</html>
