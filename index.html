@@ -1,321 +1,412 @@
-<!doctype html>
-<html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Salin Token Mata Pelajaran</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      }
-
-      body {
-        background: linear-gradient(135deg, #2563eb, #1d4ed8);
-        min-height: 100vh;
-        padding: 20px;
-      }
-
-      .container {
-        max-width: 600px;
-        margin: 0 auto;
-      }
-
-      h1 {
-        text-align: center;
-        color: white;
-        margin-bottom: 30px;
-        font-size: 22px;
-      }
-
-      .card {
-        background: white;
-        border-radius: 12px;
-        padding: 16px;
-        margin-bottom: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        transition: transform 0.2s;
-      }
-
-      .card:hover {
-        transform: translateY(-2px);
-      }
-
-      .info {
-        flex: 1;
-      }
-
-      .token {
-        font-weight: bold;
-        color: #2563eb;
-        font-size: 16px;
-        margin-bottom: 4px;
-      }
-
-      .mapel {
-        color: #4b5563;
-        font-size: 14px;
-      }
-
-      .btn-salin {
-        background: #22c55e;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 8px;
-        font-size: 15px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background 0.2s;
-        min-width: 90px;
-      }
-
-      .btn-salin:hover {
-        background: #16a34a;
-      }
-
-      .btn-salin.salinan {
-        background: #f59e0b;
-      }
-
-      .notifikasi {
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #22c55e;
-        color: white;
-        padding: 12px 24px;
-        border-radius: 8px;
-        font-weight: 600;
-        opacity: 0;
-        transition: opacity 0.3s;
-        z-index: 1000;
-      }
-
-      .notifikasi.tampil {
-        opacity: 1;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="notifikasi" id="notif">✅ TOKEN BERHASIL DISALIN!</div>
-
-    <div class="container">
-      <h1>📋 Token Mata Pelajaran SMP</h1>
-
-      <!-- Admin -->
-      <div class="card">
-        <div class="info">
-          <div class="token">ADM752</div>
-          <div class="mapel">Subandri</div>
-        </div>
-        <button class="btn-salin" onclick="salinToken('ADM752', this)">
-          SALIN
-        </button>
+<html style="margin: 0; padding: 0">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    (function () {
+      var s = document.createElement("style");
+      s.textContent =
+        ":root{--bg:#faf9f4;--card:#ffffff;--text:#0f172a;--muted:#64748b;--accent:#297a2e;--accent-soft:rgba(41,122,46,.14);--accent2:#d97706;--accent2-soft:rgba(217,119,6,.14);--border:rgba(15,23,42,.08)}" +
+        'html,body{margin:0;padding:0}body{font-family:"Comfortaa",system-ui,sans-serif;color:var(--text)}' +
+        '.mono{font-family:"JetBrains Mono",ui-monospace,monospace}' +
+        ".page{position:relative;background:radial-gradient(900px 380px at 15% -8%,var(--accent-soft),transparent 62%),radial-gradient(760px 340px at 95% 0%,var(--accent2-soft),transparent 60%),var(--bg)}" +
+        ".reveal{opacity:0;transform:translateY(14px);animation:fadeUp .55s ease forwards}@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}" +
+        ".hero-tile{width:46px;height:46px;border-radius:14px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0}" +
+        ".chip{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;background:var(--card);border:1px solid var(--border);font-size:12px;font-weight:600;color:var(--muted)}" +
+        ".search-wrap{position:relative}.search{width:100%;padding:13px 14px 13px 44px;border:1px solid var(--border);border-radius:13px;background:var(--card);font-size:14px;font-family:inherit;color:var(--text);outline:none;box-shadow:0 1px 2px rgba(15,23,42,.04);transition:border-color .18s,box-shadow .18s}.search:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}.search-ico{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}" +
+        ".group-head{display:flex;align-items:center;gap:9px;margin:24px 2px 11px}.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}.glabel{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--muted)}.gbadge{margin-left:auto;font-size:11px;font-weight:600;background:var(--accent-soft);color:var(--text);border-radius:20px;padding:2px 11px}" +
+        ".card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:14px;box-shadow:0 1px 2px rgba(15,23,42,.04);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}.card:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--accent) 35%,var(--border));box-shadow:0 8px 22px rgba(41,122,46,.08)}.card.flash{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}" +
+        ".tok{font-size:15px;font-weight:700;letter-spacing:.03em;color:var(--text);margin-bottom:3px}.cname{font-size:13px;color:var(--muted);line-height:1.45;overflow-wrap:break-word}" +
+        ".btn{min-height:44px;min-width:98px;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:0 15px;border-radius:11px;border:1px solid var(--accent);background:var(--accent-soft);color:var(--text);font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .18s,color .18s,border-color .18s,transform .12s}.btn:hover{background:color-mix(in srgb,var(--accent) 20%,#fff)}.btn:active{transform:scale(.97)}.btn.copied{background:var(--accent);border-color:var(--accent);color:#fff}" +
+        ".toast{position:absolute;top:14px;left:50%;transform:translateX(-50%) translateY(-10px);background:#0f172a;color:#fff;padding:11px 18px;border-radius:11px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;opacity:0;visibility:hidden;transition:opacity .25s,transform .25s,visibility .25s;box-shadow:0 12px 30px rgba(15,23,42,.28);z-index:30;white-space:nowrap;max-width:92%}.toast.show{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}" +
+        ".empty{display:none;text-align:center;padding:40px 20px;color:var(--muted);font-size:14px}.empty.show{display:block}";
+      document.head.appendChild(s);
+    })();
+  </script>
+  <div style="background-color: transparent; box-sizing: border-box">
+    <div class="page">
+      <div id="toast" class="toast">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+        <span id="toastMsg">Token tersalin</span>
       </div>
-
-      <!-- Admin -->
-      <div class="card">
-        <div class="info">
-          <div class="token">ADM452</div>
-          <div class="mapel">Fadhillah</div>
+      <div style="max-width: 620px; margin: 0 auto; padding: 38px 18px 46px">
+        <div
+          class="reveal"
+          style="
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 14px;
+          "
+        >
+          <div class="hero-tile">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M22 10L12 5 2 10l10 5 10-5z" />
+              <path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5" />
+            </svg>
+          </div>
+          <div>
+            <p
+              style="
+                font-family: &quot;JetBrains Mono&quot;, monospace;
+                font-size: 11px;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-bottom: 3px;
+              "
+            >
+              SMP · Kumpulan Token Rumpun
+            </p>
+            <h1
+              style="
+                font-size: 26px;
+                line-height: 1.2;
+                font-weight: 700;
+                margin: 0;
+                color: var(--text);
+              "
+            >
+              Token Mata Pelajaran
+            </h1>
+          </div>
         </div>
-        <button class="btn-salin" onclick="salinToken('ADM452', this)">
-          SALIN
-        </button>
-      </div>
-
-      <!-- Baris 1 -->
-      <div class="card">
-        <div class="info">
-          <div class="token">PAI876</div>
-          <div class="mapel">Pendidikan Agama Islam</div>
+        <p
+          class="reveal"
+          style="
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0 0 16px;
+          "
+        >
+          Klik tombol <strong style="color: var(--text)">Salin</strong> pada
+          token yang dibutuhkan, lalu tempel langsung di kolom chat WhatsApp.
+        </p>
+        <div
+          class="reveal"
+          style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px"
+        >
+          <span class="chip"
+            ><svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <rect x="9" y="9" width="13" height="13" rx="2" />
+              <path
+                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+              /></svg
+            >17 token aktif</span
+          >
+          <span class="chip"
+            ><svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M22 10L12 5 2 10l10 5 10-5z" />
+              <path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5" /></svg
+            >4 rumpun mapel</span
+          >
         </div>
-        <button class="btn-salin" onclick="salinToken('PAI876', this)">
-          SALIN
-        </button>
-      </div>
-
-      <!-- Baris 2 -->
-      <div class="card">
-        <div class="info">
-          <div class="token">PAK843</div>
-          <div class="mapel">Pendidikan Agama Kristen</div>
+        <div class="reveal search-wrap" style="margin-bottom: 6px">
+          <span class="search-ico">
+            <svg
+              width="17"
+              height="17"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+          </span>
+          <input
+            id="search"
+            class="search"
+            type="text"
+            placeholder="Cari token atau nama mata pelajaran…"
+            autocomplete="off"
+          />
         </div>
-        <button class="btn-salin" onclick="salinToken('PAK843', this)">
-          SALIN
-        </button>
-      </div>
-
-      <!-- Baris 3 -->
-      <div class="card">
-        <div class="info">
-          <div class="token">PAH348</div>
-          <div class="mapel">Pendidikan Agama Hindu</div>
+        <div id="groups"></div>
+        <div id="empty" class="empty">
+          <div style="font-size: 15px; font-weight: 600; margin-bottom: 4px">
+            Tidak ditemukan
+          </div>
+          Tidak ada token yang cocok dengan kata kunci tersebut.
         </div>
-        <button class="btn-salin" onclick="salinToken('PAH348', this)">
-          SALIN
-        </button>
-      </div>
-
-      <!-- Baris 4 -->
-      <div class="card">
-        <div class="info">
-          <div class="token">MTK789</div>
-          <div class="mapel">Matematika</div>
+        <div
+          style="
+            margin-top: 30px;
+            padding-top: 18px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--muted);
+            font-size: 12px;
+          "
+        >
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+            />
+          </svg>
+          Token yang tersalin siap ditempel di WhatsApp — tanpa perlu mengetik
+          ulang.
         </div>
-        <button class="btn-salin" onclick="salinToken('MTK789', this)">
-          SALIN
-        </button>
-      </div>
-
-      <!-- Baris 5 -->
-      <div class="card">
-        <div class="info">
-          <div class="token">BIN789</div>
-          <div class="mapel">Bahasa Indonesia</div>
-        </div>
-        <button class="btn-salin" onclick="salinToken('BIN789', this)">
-          SALIN
-        </button>
-      </div>
-
-      <!-- Baris 6 -->
-      <div class="card">
-        <div class="info">
-          <div class="token">IPA789</div>
-          <div class="mapel">Ilmu Pengetahuan Alam</div>
-        </div>
-        <button class="btn-salin" onclick="salinToken('IPA789', this)">
-          SALIN
-        </button>
-      </div>
-
-      <!-- Baris 7 -->
-      <div class="card">
-        <div class="info">
-          <div class="token">ING789</div>
-          <div class="mapel">Bahasa Inggris</div>
-        </div>
-        <button class="btn-salin" onclick="salinToken('ING789', this)">
-          SALIN
-        </button>
-      </div>
-
-      <!-- Baris 8 -->
-      <div class="card">
-        <div class="info">
-          <div class="token">IPS857</div>
-          <div class="mapel">Ilmu Pengetahuan Sosial</div>
-        </div>
-        <button class="btn-salin" onclick="salinToken('IPS857', this)">
-          SALIN
-        </button>
-      </div>
-
-      <!-- Baris 9 -->
-      <div class="card">
-        <div class="info">
-          <div class="token">PPA901</div>
-          <div class="mapel">Pendidikan Pancasila</div>
-        </div>
-        <button class="btn-salin" onclick="salinToken('PPA901', this)">
-          SALIN
-        </button>
-      </div>
-
-      <!-- Baris 10 -->
-      <div class="card">
-        <div class="info">
-          <div class="token">PJOK902</div>
-          <div class="mapel">Pendidikan Jasmani, Olahraga, dan Kesehatan</div>
-        </div>
-        <button class="btn-salin" onclick="salinToken('PJOK902', this)">
-          SALIN
-        </button>
-      </div>
-
-      <!-- Baris 11 -->
-      <div class="card">
-        <div class="info">
-          <div class="token">TIK903</div>
-          <div class="mapel">Teknologi Informasi dan Komunikasi</div>
-        </div>
-        <button class="btn-salin" onclick="salinToken('TIK903', this)">
-          SALIN
-        </button>
-      </div>
-
-      <!-- Baris 12 -->
-      <div class="card">
-        <div class="info">
-          <div class="token">PRK345</div>
-          <div class="mapel">Prakarya</div>
-        </div>
-        <button class="btn-salin" onclick="salinToken('PRK345', this)">
-          SALIN
-        </button>
-      </div>
-
-      <!-- Baris 13 -->
-      <div class="card">
-        <div class="info">
-          <div class="token">SNI959</div>
-          <div class="mapel">Seni Tari</div>
-        </div>
-        <button class="btn-salin" onclick="salinToken('SNI959', this)">
-          SALIN
-        </button>
-      </div>
-
-      <!-- Baris 14 -->
-      <div class="card">
-        <div class="info">
-          <div class="token">BK8477</div>
-          <div class="mapel">Bimbingan Konseling</div>
-        </div>
-        <button class="btn-salin" onclick="salinToken('BK8477', this)">
-          SALIN
-        </button>
-      </div>
-
-      <!-- Baris 15 -->
-      <div class="card">
-        <div class="info">
-          <div class="token">BDT485</div>
-          <div class="mapel">Bahasa Tolaki</div>
-        </div>
-        <button class="btn-salin" onclick="salinToken('BDT485', this)">
-          SALIN
-        </button>
       </div>
     </div>
-
     <script>
-      function salinToken(token, tombol) {
-        // Salin ke clipboard
-        navigator.clipboard.writeText(token).then(() => {
-          // Tampilkan notifikasi
-          const notif = document.getElementById("notif");
-          notif.classList.add("tampil");
-
-          // Ubah teks tombol sementara
-          tombol.textContent = "TERSALIN!";
-          tombol.classList.add("salinan");
-
-          setTimeout(() => {
-            notif.classList.remove("tampil");
-            tombol.textContent = "SALIN";
-            tombol.classList.remove("salinan");
-          }, 2000);
+      (function () {
+        var ICON = {
+          users:
+            '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+          book: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>',
+          cap: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg>',
+          globe:
+            '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+          copy: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>',
+          check:
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+        };
+        var GROUPS = [
+          {
+            key: "admin",
+            label: "Administrator / Tata Usaha",
+            color: "#64748b",
+            icon: "users",
+          },
+          {
+            key: "agama",
+            label: "Pendidikan Agama",
+            color: "#d97706",
+            icon: "book",
+          },
+          {
+            key: "umum",
+            label: "Mata Pelajaran Umum",
+            color: "#297a2e",
+            icon: "cap",
+          },
+          {
+            key: "lokal",
+            label: "Muatan Lokal",
+            color: "#0d9488",
+            icon: "globe",
+          },
+        ];
+        var DATA = [
+          { t: "ADM752", n: "Subandri", g: "admin" },
+          { t: "ADM452", n: "Fadhillah", g: "admin" },
+          { t: "PAI876", n: "Pendidikan Agama Islam", g: "agama" },
+          { t: "PAK843", n: "Pendidikan Agama Kristen", g: "agama" },
+          { t: "PAH348", n: "Pendidikan Agama Hindu", g: "agama" },
+          { t: "MTK789", n: "Matematika", g: "umum" },
+          { t: "BIN789", n: "Bahasa Indonesia", g: "umum" },
+          { t: "IPA789", n: "Ilmu Pengetahuan Alam", g: "umum" },
+          { t: "ING789", n: "Bahasa Inggris", g: "umum" },
+          { t: "IPS857", n: "Ilmu Pengetahuan Sosial", g: "umum" },
+          { t: "PPA901", n: "Pendidikan Pancasila", g: "umum" },
+          {
+            t: "PJOK902",
+            n: "Pendidikan Jasmani, Olahraga, dan Kesehatan",
+            g: "umum",
+          },
+          { t: "TIK903", n: "Teknologi Informasi dan Komunikasi", g: "umum" },
+          { t: "PRK345", n: "Prakarya", g: "umum" },
+          { t: "SNI959", n: "Seni Tari", g: "umum" },
+          { t: "BK8477", n: "Bimbingan Konseling", g: "umum" },
+          { t: "BDT485", n: "Bahasa Tolaki", g: "lokal" },
+        ];
+        var wrap = document.getElementById("groups");
+        var cards = [];
+        var sections = {};
+        GROUPS.forEach(function (g) {
+          var sec = document.createElement("section");
+          sec.dataset.group = g.key;
+          var head = document.createElement("div");
+          head.className = "group-head";
+          var dot = document.createElement("span");
+          dot.className = "dot";
+          dot.style.background = g.color;
+          var lab = document.createElement("span");
+          lab.className = "glabel";
+          lab.textContent = g.label;
+          var badge = document.createElement("span");
+          badge.className = "gbadge";
+          badge.dataset.badge = g.key;
+          head.appendChild(dot);
+          head.appendChild(lab);
+          head.appendChild(badge);
+          var list = document.createElement("div");
+          list.dataset.list = g.key;
+          list.style.display = "flex";
+          list.style.flexDirection = "column";
+          list.style.gap = "10px";
+          sec.appendChild(head);
+          sec.appendChild(list);
+          wrap.appendChild(sec);
+          sections[g.key] = { sec: sec, list: list, badge: badge };
         });
-      }
+        DATA.forEach(function (item) {
+          var sec = sections[item.g];
+          var card = document.createElement("div");
+          card.className = "card";
+          card.dataset.token = item.t;
+          var left = document.createElement("div");
+          left.style.flex = "1 1 auto";
+          left.style.minWidth = "0";
+          var tok = document.createElement("div");
+          tok.className = "tok mono";
+          tok.textContent = item.t;
+          var nm = document.createElement("div");
+          nm.className = "cname";
+          nm.textContent = item.n;
+          left.appendChild(tok);
+          left.appendChild(nm);
+          var btn = document.createElement("button");
+          btn.className = "btn";
+          btn.type = "button";
+          btn.dataset.token = item.t;
+          btn.setAttribute("aria-label", "Salin token " + item.t);
+          btn.innerHTML = ICON.copy + "<span>Salin</span>";
+          card.appendChild(left);
+          card.appendChild(btn);
+          sec.list.appendChild(card);
+          cards.push({ el: card, btn: btn, t: item.t, n: item.n, g: item.g });
+        });
+        GROUPS.forEach(function (g) {
+          var n = DATA.filter(function (d) {
+            return d.g === g.key;
+          }).length;
+          sections[g.key].badge.textContent = n + " token";
+        });
+        function legacyCopy(text) {
+          var ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "absolute";
+          ta.style.left = "-9999px";
+          ta.style.top = "0";
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          try {
+            document.execCommand("copy");
+          } catch (e) {}
+          document.body.removeChild(ta);
+        }
+        var toast = document.getElementById("toast");
+        var toastMsg = document.getElementById("toastMsg");
+        var toastTimer = null;
+        function showToast(msg) {
+          toastMsg.textContent = msg;
+          toast.classList.add("show");
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(function () {
+            toast.classList.remove("show");
+          }, 1800);
+        }
+        function copyToken(token, btn, card) {
+          function done() {
+            btn.classList.add("copied");
+            btn.innerHTML = ICON.check + "<span>Tersalin</span>";
+            card.classList.add("flash");
+            showToast(token + " tersalin ke clipboard");
+            setTimeout(function () {
+              btn.classList.remove("copied");
+              btn.innerHTML = ICON.copy + "<span>Salin</span>";
+              card.classList.remove("flash");
+            }, 1800);
+          }
+          if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard
+              .writeText(token)
+              .then(done)
+              .catch(function () {
+                legacyCopy(token);
+                done();
+              });
+          } else {
+            legacyCopy(token);
+            done();
+          }
+        }
+        wrap.addEventListener("click", function (e) {
+          var btn = e.target.closest("button[data-token]");
+          if (!btn) return;
+          var card = btn.closest(".card");
+          copyToken(btn.dataset.token, btn, card);
+        });
+        var search = document.getElementById("search");
+        var empty = document.getElementById("empty");
+        search.addEventListener("input", function () {
+          var q = search.value.trim().toLowerCase();
+          var visible = 0;
+          cards.forEach(function (c) {
+            var match =
+              !q ||
+              c.t.toLowerCase().indexOf(q) >= 0 ||
+              c.n.toLowerCase().indexOf(q) >= 0;
+            c.el.style.display = match ? "" : "none";
+            if (match) visible++;
+          });
+          GROUPS.forEach(function (g) {
+            var any = cards.some(function (c) {
+              return c.g === g.key && c.el.style.display !== "none";
+            });
+            sections[g.key].sec.style.display = any ? "" : "none";
+          });
+          empty.classList.toggle("show", visible === 0);
+        });
+      })();
     </script>
-  </body>
+  </div>
 </html>
